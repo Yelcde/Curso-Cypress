@@ -47,6 +47,9 @@ describe("Work with basic elements", () => {
 
     it.only("Checkbox", () => {
         cy.get('[name = "formComidaFavorita"]').click({multiple: true})
+    })
 
+    it.only("Combo", () => {
+        cy.get('[data-test=dataEscolaridade]').select("2o grau completo").should("have.value", "2graucomp")
     })
 })
