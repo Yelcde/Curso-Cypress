@@ -52,4 +52,8 @@ describe("Work with basic elements", () => {
     it.only("Combo", () => {
         cy.get('[data-test=dataEscolaridade]').select("2o grau completo").should("have.value", "2graucomp")
     })
+
+    it.only("Combo multiple", () => {
+        cy.get('[data-testid=dataEsportes]').select(["natacao", "Corrida"])
+    })
 })
