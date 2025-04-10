@@ -11,7 +11,7 @@ describe("Work with basic elements", () => {
         cy.get('.facilAchar').should("have.text", "Cuidado onde clica, muitas armadilhas...")
     })
 
-    it.only("Links", () => {
+    it("Links", () => {
         cy.get('a').first().click() // Clicks the first <a> element
         cy.get("#resultado").should("have.text", "Voltou!")
 
@@ -19,5 +19,21 @@ describe("Work with basic elements", () => {
         cy.get("#resultado").should("not.have.text", "Voltou!")
         cy.contains("Voltar").click()
         cy.get("#resultado").should("have.text", "Voltou!")
+    })
+
+    it.only("Text fields", () => {
+        cy.get('#formNome').type("Johnner")
+        cy.get("#formNome").should("have.value", "Johnner")
+
+        cy.get('#elementosForm\\:sugestoes').type("Text Area")
+        cy.get('#elementosForm\\:sugestoes').should("have.value", "Text Area")
+
+        cy.get('#tabelaUsuarios > :nth-child(2) > :nth-child(1) > :nth-child(6) > input').type("Cypress Test")
+
+        cy.get('[data-cy=dataSobrenome]').type("Teste12345{Backspace}{Backspace}")
+        cy.get('[data-cy=dataSobrenome]').should("have.value", "Teste123")
+
+        cy.get('#elementosForm\\:sugestoes').clear().type("Error{selectall}Acerto", {delay: 100})
+        cy.get('#elementosForm\\:sugestoes').should("have.value", "Acerto")
     })
 })
