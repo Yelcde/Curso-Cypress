@@ -3,6 +3,7 @@
 describe("Work with basic elements", () => {
     beforeEach(() => {
         cy.visit("https://wcaquino.me/cypress/componentes.html")
+        cy.reload()
     })
 
     it("Text", () => {
@@ -21,7 +22,7 @@ describe("Work with basic elements", () => {
         cy.get("#resultado").should("have.text", "Voltou!")
     })
 
-    it.only("Text fields", () => {
+    it("Text fields", () => {
         cy.get('#formNome').type("Johnner")
         cy.get("#formNome").should("have.value", "Johnner")
 
@@ -35,5 +36,12 @@ describe("Work with basic elements", () => {
 
         cy.get('#elementosForm\\:sugestoes').clear().type("Error{selectall}Acerto", {delay: 100})
         cy.get('#elementosForm\\:sugestoes').should("have.value", "Acerto")
+    })
+
+    it("Radio buttons", () => {
+        cy.get('#formSexoFem').click().should("be.checked")
+        cy.get('#formSexoMasc').should("not.be.checked")
+
+        cy.get("[name = 'formSexo']").should("have.length", 2) 
     })
 })
