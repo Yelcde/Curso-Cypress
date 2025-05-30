@@ -17,7 +17,7 @@ describe('Helpers...', () => {
         })
     })
 
-    it.only("Its...", () => {
+    it("Its...", () => {
         // const obj = {nome: "User", idade: 20}
         // cy.wrap(obj).should('have.property', 'nome', 'User')
         // cy.wrap(obj).its('nome').should('be.equal', 'User')
@@ -27,5 +27,11 @@ describe('Helpers...', () => {
 
         cy.visit("https://wcaquino.me/cypress/componentes.html")
         cy.title().its('length').should('be.equal', 20)
+    })
+
+    it.only("Invoke", () => {
+        const getValue = () => 1;
+
+        cy.wrap({fn: getValue}).invoke('fn').should('be.equal', 1)
     })
 })
