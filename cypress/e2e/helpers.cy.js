@@ -16,4 +16,9 @@ describe('Helpers...', () => {
             cy.wrap($el).type('funciona com Cypress')
         })
     })
+
+    it.only("Its...", () => {
+        const obj = {nome: "User", idade: 20}
+        cy.wrap(obj).should('have.property', 'nome', 'User')
+    })
 })
